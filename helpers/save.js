@@ -2,11 +2,12 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 
+
 // Get the home directory
 const homeDir = os.homedir();
 
 // Create the full path to the file in the home directory
-const file = path.join(homeDir, '/pass.json');
+const file = path.join(homeDir, '/here the name of your file to store your passwords');
 
 
 // Save file

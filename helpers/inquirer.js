@@ -23,8 +23,12 @@ const questions = [
                 name: '3.'.green + ' Change a password'
             },
             {
-                value: '4',
-                name: '4.'.green + ' Exit'
+                value:'4',
+                name: '4.'.green + ' Get password'
+            },
+            {
+                value: '5',
+                name: '5.'.green + ' Exit'
             },
         ]
     }
@@ -60,6 +64,7 @@ const pause = async() => {
 
 // The validate function is to enforce the input of a value
 const readInput = async( text ) => {
+    
     const question = [ 
         {
             type: 'input',

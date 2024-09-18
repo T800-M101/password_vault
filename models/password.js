@@ -7,7 +7,7 @@ class Password {
      
         this.id = uuidv4();
         this.protectedTarget = target.toLowerCase();
-        this.password = pass.toLowerCase();
+        this.password = pass;
     }
 }
 

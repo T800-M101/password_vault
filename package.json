@@ -1,0 +1,16 @@
+{
+  "name": "password_vault",
+  "version": "1.0.0",
+  "description": "App to store passwords",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Guillermo Moran",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "inquirer": "^7.3.3",
+    "uuid": "^10.0.0"
+  }
+}

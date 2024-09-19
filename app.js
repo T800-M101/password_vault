@@ -1,4 +1,4 @@
-const { mainMenu, pause, readInput, changePassMenu } = require('./helpers/inquirer');
+const { mainMenu, pause, readInput, changePassMenu, confirm } = require('./helpers/inquirer');
 const PWD = require('./models/pwd');
 const Password = require('./models/password');
 const { readFile, saveFile } = require('./helpers/save');
@@ -37,13 +37,24 @@ const main = async () => {
             case '4':
                 const item = await readInput('What target?');
                 const password = passManager.getPass(item);
-                console.log(password)
+                console.log(password);
+                break;
+            case '5':
+                const deleteId = await changePassMenu(passManager.pwdsList);
+                if ( deleteId !== '0' ) {
+                    const ok = await confirm('Are you sure?');
+                    if ( ok ) {
+                        const response = passManager.deletePassword( deleteId );
+                        console.log(response);
+                    }
+                }
+                break;
         }
 
         saveFile(passManager.pwdsList);
         await pause();
 
-    } while (opt !== '5')
+    } while (opt !== '6')
 
 }
 

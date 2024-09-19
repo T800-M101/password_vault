@@ -2,8 +2,6 @@ const inquirer = require('inquirer');
 const colors = require('colors');
 
 
-
-
 const questions = [
     {
         type: 'list',
@@ -20,7 +18,7 @@ const questions = [
             },
             {
                 value: '3',
-                name: '3.'.green + ' Change a password'
+                name: '3.'.green + ' Change password'
             },
             {
                 value:'4',
@@ -28,13 +26,18 @@ const questions = [
             },
             {
                 value: '5',
-                name: '5.'.green + ' Exit'
+                name: '5.'.green + ' Delete password'
+            },
+            {
+                value: '6',
+                name: '6.'.green + ' Exit'
             },
         ]
     }
 ];
 
 const mainMenu = async() => {
+
     console.clear();
     console.log('==============================='.green);
     console.log('          Menu options');
@@ -112,11 +115,26 @@ const changePassMenu = async (passwords) => {
     return id;
 }
 
+const confirm = async(message) => {
+    const question = [
+        {
+            type: 'confirm',
+            name: 'ok',
+            message
+        }
+    ];
+
+    const { ok } = await inquirer.prompt(question);
+    // returns a boolean
+    return ok;
+}
+
 
 
 module.exports = {
     mainMenu,
     changePassMenu,
     pause,
-    readInput
+    readInput,
+    confirm
 }

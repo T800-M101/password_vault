@@ -13,6 +13,7 @@ class PWD {
     }
 
     createPass(target, pass) {
+      
         for ( const pass of this.pwdsList ) {
             if (pass.protectedTarget == target.toLowerCase()) return 'Cannot create. Target already in the list'.red;
         }
@@ -33,14 +34,25 @@ class PWD {
             console.log(`${index} ${protectedTarget} :: ${password}`);
             i++;
         }
+
+        if (this.pwdsList.length === 0) console.log('***** THERE ARE NO PASSWORDS YET *****'.green);
     }
 
     changePassword(id, newPass) {
+
         if (this._pwds[id]) {
-            this._pwds[id].password = newPass;
+            const encryptedPass = encryptPassword(newPass);
+            this._pwds[id].password = encryptedPass;
         }
 
         return '***** Password was changed successfully *****'.toUpperCase().green;
+    }
+
+    deletePassword(id) {
+        if ( this._pwds[id] ) {
+           delete this._pwds[id];
+        }
+        return '***** Password deleted *****'.toLocaleUpperCase().green;
     }
 
     loadPassFile(file) {
@@ -60,6 +72,7 @@ class PWD {
         return '***** '.green + `${decripedPass}` + ' *****'.green;
         
     }
+
 
 }
 

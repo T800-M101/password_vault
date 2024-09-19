@@ -6,7 +6,7 @@ const { readFile, saveFile } = require('./helpers/save');
 
 console.clear();
 const main = async () => {
-
+   
     let opt = '';
     const passManager = new PWD();
     const passFile = readFile();

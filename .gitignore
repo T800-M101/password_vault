@@ -1,5 +1,8 @@
 # Node modules
 node_modules/
 
+# Environment variables
+.env
+
 # store files
 /store/*.json

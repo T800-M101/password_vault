@@ -1,6 +1,6 @@
 const colors = require('colors');
 const Password = require("./password");
-
+const { encryptPassword, decryptPassword } = require('../crypto/crypto');
 
 class PWD {
 
@@ -13,7 +13,8 @@ class PWD {
     }
 
     createPass(target, pass) {
-        const password = new Password(target, pass);
+        const encryptedPass = encryptPassword(pass);
+        const password = new Password(target, encryptedPass);
         this._pwds[password.id] = password;
 
         return '***** Item created *****'.toUpperCase().green;
@@ -46,11 +47,14 @@ class PWD {
 
     getPass(item) {
         let response = 'NO SUCH TARGET'.red;
+        
         for ( const pass of this.pwdsList ) {
-            if ( pass.protectedTarget === item.toLowerCase()) response = '***** '.green + `${pass.password.green}` + ' *****'.green;
+            if ( pass.protectedTarget === item.toLowerCase()) response = pass.password;
         }
-
-        return response;
+        const decripedPass = decryptPassword(response);
+        
+        return '***** '.green + `${decripedPass}` + ' *****'.green;
+        
     }
 
 }

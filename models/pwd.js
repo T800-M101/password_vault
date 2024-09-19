@@ -13,6 +13,10 @@ class PWD {
     }
 
     createPass(target, pass) {
+        for ( const pass of this.pwdsList ) {
+            if (pass.protectedTarget == target.toLowerCase()) return 'Cannot create. Target already in the list'.red;
+        }
+
         const encryptedPass = encryptPassword(pass);
         const password = new Password(target, encryptedPass);
         this._pwds[password.id] = password;

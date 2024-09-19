@@ -10,6 +10,7 @@ const main = async () => {
     let opt = '';
     const passManager = new PWD();
     const passFile = readFile();
+  
 
     if (passFile) passManager.loadPassFile(passFile);
     

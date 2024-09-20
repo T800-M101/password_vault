@@ -2,11 +2,12 @@ const { v4: uuidv4 } = require('uuid');
 
 
 class Password {
-   
-    constructor(target, pass){
+    
+    constructor(target, user='***', pass){
      
         this.id = uuidv4();
         this.protectedTarget = target.toLowerCase();
+        this.user = user;
         this.password = pass;
     }
 }

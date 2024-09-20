@@ -12,14 +12,14 @@ class PWD {
         return Object.values(this._pwds);
     }
 
-    createPass(target, pass) {
+    createPass(target, user, pass) {
       
         for ( const pass of this.pwdsList ) {
             if (pass.protectedTarget == target.toLowerCase()) return 'Cannot create. Target already in the list'.red;
         }
 
         const encryptedPass = encryptPassword(pass);
-        const password = new Password(target, encryptedPass);
+        const password = new Password(target, user, encryptedPass);
         this._pwds[password.id] = password;
 
         return '***** Item created *****'.toUpperCase().green;
@@ -28,10 +28,11 @@ class PWD {
     listAllPasswords() {
         console.log();
         let i = 1;
-        for( const pass of this.pwdsList ) {
+    
+        for( const pass of this.pwdsList.sort() ) {
             const index = `${ (i + '.').green }`;
-            const { protectedTarget, password } = pass;
-            console.log(`${index} ${protectedTarget} :: ${password}`);
+            const { protectedTarget, user, password } = pass;
+            console.log(`${index} ${protectedTarget} :: ${user} :: ${password}`);
             i++;
         }
 

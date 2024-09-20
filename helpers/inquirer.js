@@ -66,7 +66,7 @@ const pause = async() => {
 }
 
 // The validate function is to enforce the input of a value
-const readInput = async( text ) => {
+const readInput = async( text, enforce=true ) => {
     
     const question = [ 
         {
@@ -74,7 +74,7 @@ const readInput = async( text ) => {
             name: 'target',
             message: text,
             validate( value ) {
-                if ( value.length === 0 ) {
+                if ( enforce && value.length === 0 ) {
                     return 'Please, write a target to protect.'
                 }
                 return true;

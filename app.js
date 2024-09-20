@@ -19,8 +19,9 @@ const main = async () => {
         switch (opt) {
             case '1':
                 const target = await readInput('Target to protect:');
+                const user = await readInput('User:', false)
                 const pass = await readInput('Password:');
-                const response = passManager.createPass(target, pass);
+                const response = passManager.createPass(target, user, pass);
                 console.log(response);
                 break;
             case '2':

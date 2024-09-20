@@ -28,8 +28,8 @@ class PWD {
     listAllPasswords() {
         console.log();
         let i = 1;
-    
-        for( const pass of this.pwdsList.sort() ) {
+        
+        for( const pass of this.pwdsList) {
             const index = `${ (i + '.').green }`;
             const { protectedTarget, user, password } = pass;
             console.log(`${index} ${protectedTarget} :: ${user} :: ${password}`);
@@ -66,12 +66,14 @@ class PWD {
         let response = 'NO SUCH TARGET'.red;
         
         for ( const pass of this.pwdsList ) {
-            if ( pass.protectedTarget === item.toLowerCase()) response = pass.password;
+            if ( pass.protectedTarget === item.toLowerCase()) {
+                response = pass.password;
+                const decripedPass = decryptPassword(response);
+                return '***** '.green + `${decripedPass}` + ' *****'.green;
+            } else {
+                return response;
+            }
         }
-        const decripedPass = decryptPassword(response);
-        
-        return '***** '.green + `${decripedPass}` + ' *****'.green;
-        
     }
 
 

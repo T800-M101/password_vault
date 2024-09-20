@@ -5,6 +5,7 @@ const colors = require('colors');
 const questions = [
     {
         type: 'list',
+        pageSize: 20,
         name: 'option',
         message: 'What do you want to do',
         choices: [

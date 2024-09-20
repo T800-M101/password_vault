@@ -70,10 +70,9 @@ class PWD {
 
     getPass(item) {
         let response = 'NO SUCH TARGET'.red;
-        let found = false;
         
         for ( const pass of this.pwdsList ) {
-            
+
             if ( pass.protectedTarget === item.toLowerCase()) {
                 const decriptedPass = decryptPassword(pass.password);
                 response = '***** '.green + `${decriptedPass}` + ' *****'.green

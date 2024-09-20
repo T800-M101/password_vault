@@ -31,16 +31,24 @@ const main = async () => {
                 const id = await changePassMenu(passManager.pwdsList);
                 if (id !== '0') {
                     const newPassword = await readInput('new password?');
-                    const response = passManager.changePassword(id, newPassword);
+                    const response = passManager.changeUserOrPassword(id, newPassword);
                     console.log(response)
                 } 
                 break;
             case '4':
+                const editId = await changePassMenu(passManager.pwdsList);
+                if (editId !== '0') {
+                    const newUser = await readInput('new user?');
+                    const response = passManager.changeUserOrPassword(editId, newUser, true);
+                    console.log(response)
+                } 
+                break;
+            case '5':
                 const item = await readInput('What target?');
                 const password = passManager.getPass(item);
                 console.log(password);
                 break;
-            case '5':
+            case '6':
                 const deleteId = await changePassMenu(passManager.pwdsList);
                 if ( deleteId !== '0' ) {
                     const ok = await confirm('Are you sure?');
@@ -55,7 +63,7 @@ const main = async () => {
         saveFile(passManager.pwdsList);
         await pause();
 
-    } while (opt !== '6')
+    } while (opt !== '7')
 
 }
 

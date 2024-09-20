@@ -19,19 +19,23 @@ const questions = [
             },
             {
                 value: '3',
-                name: '3.'.green + ' Change password'
+                name: '3.'.green + ' Edit password'
             },
             {
                 value:'4',
-                name: '4.'.green + ' Get password'
+                name:'4.'.green + ' Edit user'
             },
             {
-                value: '5',
-                name: '5.'.green + ' Delete password'
+                value:'5',
+                name: '5.'.green + ' Get password'
             },
             {
                 value: '6',
-                name: '6.'.green + ' Exit'
+                name: '6.'.green + ' Delete password'
+            },
+            {
+                value: '7',
+                name: '7.'.green + ' Exit'
             },
         ]
     }

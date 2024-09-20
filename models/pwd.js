@@ -39,14 +39,20 @@ class PWD {
         if (this.pwdsList.length === 0) console.log('***** THERE ARE NO PASSWORDS YET *****'.green);
     }
 
-    changePassword(id, newPass) {
+    changeUserOrPassword(id, userOrPass, user=false) {
 
         if (this._pwds[id]) {
-            const encryptedPass = encryptPassword(newPass);
-            this._pwds[id].password = encryptedPass;
+            if ( user ) {
+                this._pwds[id].user = userOrPass; 
+            } else {
+                const encryptedPass = encryptPassword(userOrPass);
+                this._pwds[id].password = encryptedPass;
+            }
         }
 
-        return '***** Password was changed successfully *****'.toUpperCase().green;
+        
+
+        return user ? '***** User was changed successfully *****'.toUpperCase().green : '***** Password was changed successfully *****'.toUpperCase().green;
     }
 
     deletePassword(id) {
@@ -63,17 +69,20 @@ class PWD {
     }
 
     getPass(item) {
-        let response = 'NO SUCH TARGET'.red;
+        let decriptedPass = '';
+        let found = false;
         
         for ( const pass of this.pwdsList ) {
+            
             if ( pass.protectedTarget === item.toLowerCase()) {
-                response = pass.password;
-                const decripedPass = decryptPassword(response);
-                return '***** '.green + `${decripedPass}` + ' *****'.green;
-            } else {
-                return response;
-            }
+                decriptedPass = decryptPassword(pass.password);
+                found = true;
+                break;
+            } 
         }
+        
+        return found ? '***** '.green + `${decriptedPass}` + ' *****'.green : 'NO SUCH TARGET'.red;
+
     }
 
 
